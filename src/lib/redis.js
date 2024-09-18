@@ -1,22 +1,29 @@
-import { createClient } from 'redis';
+import { Redis } from '@upstash/redis'
 
-const client = createClient({
-  url: process.env.REDIS_URL
-});
-
-client.on('error', (err) => console.log('Redis Client Error', err));
-
-await client.connect();
+const redis = new Redis({
+  url: process.env.REDIS_URL,
+  token: process.env.REDIS_TOKEN,
+})
 
 export const setCache = async (key, value, expiration = 3600) => {
-  await client.set(key, value, {
-    EX: expiration
-  });
+  try {
+    await redis.set(key, value, { ex: expiration });
+    console.log(`Successfully set cache for key: ${key}`);
+  } catch (error) {
+    console.error(`Error setting cache for key ${key}:`, error);
+    throw error;
+  }
 };
 
 export const getCache = async (key) => {
-  const value = await client.get(key);
-  return value;
+  try {
+    const value = await redis.get(key);
+    console.log(`Retrieved cache for key: ${key}`, value);
+    return value;
+  } catch (error) {
+    console.error(`Error getting cache for key ${key}:`, error);
+    throw error;
+  }
 };
 
-export default client;
+export default redis;

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Trophy } from 'lucide-react';
 
 export default function ComparisonResult({ comparison }) {
   console.log('Comparison data:', comparison);
@@ -80,7 +81,7 @@ export default function ComparisonResult({ comparison }) {
         transition={{ delay: 0.5, type: 'spring', stiffness: 260, damping: 20 }}
       >
         <h3 className="text-2xl sm:text-3xl font-bold flex items-center justify-center gap-2">
-          Winner - <span className="text-primary">{winner}</span>
+        <Trophy className="text-yellow-500 w-6 h-6 sm:w-8 sm:h-8" /> is <span className="text-primary">{winner}</span>
         </h3>
         <p className="text-sm text-muted-foreground mt-2">
           The overall winner is determined by who wins the most individual comparisons.
