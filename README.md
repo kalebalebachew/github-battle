@@ -1,15 +1,15 @@
 # GitHub-Battle
+### this tool allows users to compare two GitHub profiles and determine who comes out on top based on various metrics
 
-- this tool allows users to compare two GitHub profiles and determine who comes out on top based on various metrics
-
-[Live Demo](https://github-battle-psi.vercel.app/)
+- [Live Demo](https://github-battle-psi.vercel.app/)
 
 ## Features
-- Compare GitHub profiles side by side
-- Metrics: Followers, Repos, Stars, Commits, PRs, Issues, Account Age
+-  Compare GitHub profiles side by side
+- Metrics  Followers, Repos, Stars, Commits, PRs, Account Age
 ## Tech Stack
  - NextJs
  - Redis
+ - ShadcnUI
 ## Usage
 1. Enter two GitHub usernames
 2. Click "Compare"
