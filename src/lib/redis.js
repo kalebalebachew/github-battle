@@ -1,17 +1,22 @@
-import Redis from "ioredis";
+import { createClient } from 'redis';
 
-const REDIS_PORT = 6379;
-const client = new Redis(REDIS_PORT);
-
-client.on("error", (err) => {
-  console.log("Error " + err);
+const client = createClient({
+  url: process.env.REDIS_URL
 });
 
-export const setCache = async (key, value, expiration = 3000) => {
-  await client.setex(key, expiration, value);
+client.on('error', (err) => console.log('Redis Client Error', err));
+
+await client.connect();
+
+export const setCache = async (key, value, expiration = 3600) => {
+  await client.set(key, value, {
+    EX: expiration
+  });
 };
 
 export const getCache = async (key) => {
-  const data = await client.get(key);
-  return data;
+  const value = await client.get(key);
+  return value;
 };
+
+export default client;
