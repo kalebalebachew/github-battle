@@ -3,7 +3,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Trophy } from 'lucide-react';
 
 export default function ComparisonResult({ comparison }) {
-  console.log('Comparison data:', comparison);
   const { user1, user2 } = comparison;
 
   const compareAttribute = (attr, higherIsBetter = true) => {
