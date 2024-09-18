@@ -20,4 +20,5 @@
 Contributions are welcome Feel free to submit a Pull Request
 
 ## License
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](https://github.com/kalebalebachew/github-battle?tab=GPL-3.0-1-ov-file) file for details.
 
