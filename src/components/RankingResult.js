@@ -13,7 +13,7 @@ export default function ComparisonResult({ comparison }) {
   };
 
   const getOverallWinner = () => {
-    const attributes = ['followers', 'publicRepos', 'totalStars', 'contributions', 'pullRequests', 'issues'];
+    const attributes = ['followers', 'publicRepos', 'totalStars', 'totalCommits', 'pullRequests', 'issues'];
     let user1Points = 0;
     let user2Points = 0;
 
@@ -61,9 +61,8 @@ export default function ComparisonResult({ comparison }) {
           {renderComparison('followers', 'Followers')}
           {renderComparison('publicRepos', 'Public Repos')}
           {renderComparison('totalStars', 'Total Stars')}
-          {renderComparison('contributions', 'Contributions')}
+          {renderComparison('totalCommits', 'Total Commits')}
           {renderComparison('pullRequests', 'Pull Requests')}
-          {renderComparison('issues', 'Issues')}
           <TableRow>
             <TableCell className="font-medium">Account Age</TableCell>
             <TableCell>{formatDate(user1.createdAt)}</TableCell>
@@ -81,7 +80,8 @@ export default function ComparisonResult({ comparison }) {
         transition={{ delay: 0.5, type: 'spring', stiffness: 260, damping: 20 }}
       >
         <h3 className="text-2xl sm:text-3xl font-bold flex items-center justify-center gap-2">
-        <Trophy className="text-yellow-500 w-6 h-6 sm:w-8 sm:h-8" /> is <span className="text-primary">{winner}</span>
+          Winner - <span className="text-primary">{winner}</span>
+          <Trophy className="text-yellow-500 w-6 h-6 sm:w-8 sm:h-8" />
         </h3>
         <p className="text-sm text-muted-foreground mt-2">
           The overall winner is determined by who wins the most individual comparisons.

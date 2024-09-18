@@ -17,51 +17,50 @@ export default async function handler(req, res) {
   try {
     const getData = async (username) => {
       const cacheKey = `${username}:fullData`;
-      console.log(`Attempting to get cached data for ${username}`);
-      let cachedData;
+      let cachedData = null;
+
       try {
         cachedData = await getCache(cacheKey);
-        console.log(`Cached data for ${username}:`, cachedData);
       } catch (cacheError) {
-        console.error(`Error getting cache for ${username}:`, cacheError);
+        console.error(`Cache error for ${username}:`, cacheError);
       }
-    
+
       if (cachedData) {
         if (typeof cachedData === 'object') {
-          console.log(`Cached data for ${username} is already an object, using as-is`);
           return cachedData;
         }
         try {
-          const parsedData = JSON.parse(cachedData);
-          console.log(`Successfully parsed cached data for ${username}`);
-          return parsedData;
+          return JSON.parse(cachedData);
         } catch (parseError) {
-          console.error(`Error parsing cached data for ${username}:`, parseError);
-          console.log(`Raw cached data for ${username}:`, cachedData);
+          console.error(`Parse error for ${username}:`, parseError);
         }
       }
-    
-      console.log(`Fetching fresh data for ${username}`);
-      const userData = await getGitHubData(username);
-      console.log(`Fresh data fetched for ${username}:`, userData);
-      
+
       try {
-        await setCache(cacheKey, userData);
-        console.log(`Successfully cached data for ${username}`);
-      } catch (setCacheError) {
-        console.error(`Error setting cache for ${username}:`, setCacheError);
+        const userData = await getGitHubData(username);
+        
+        try {
+          await setCache(cacheKey, userData);
+        } catch (setCacheError) {
+          console.error(`Cache set error for ${username}:`, setCacheError);
+        }
+
+        return userData;
+      } catch (fetchError) {
+        console.error(`Fetch error for ${username}:`, fetchError);
+        return null;
       }
-    
-      return userData;
     };
 
-    console.log('Fetching data for both users');
     const [user1Data, user2Data] = await Promise.all([
       getData(username1),
       getData(username2)
     ]);
 
-    console.log('Successfully fetched data for both users');
+    if (!user1Data || !user2Data) {
+      return res.status(404).json({ error: 'One or both users not found' });
+    }
+
     res.status(200).json({ user1: user1Data, user2: user2Data });
   } catch (error) {
     console.error('Error in rank API:', error);
