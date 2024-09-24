@@ -13,7 +13,7 @@ export default function ComparisonResult({ comparison }) {
   };
 
   const getOverallWinner = () => {
-    const attributes = ['followers', 'publicRepos', 'totalStars', 'totalCommits', 'pullRequests', 'issues'];
+    const attributes = ['followers', 'publicRepos', 'totalStars', 'totalCommits', ' totalPullRequests', 'totalIssues'];
     let user1Points = 0;
     let user2Points = 0;
 
@@ -62,7 +62,8 @@ export default function ComparisonResult({ comparison }) {
           {renderComparison('publicRepos', 'Public Repos')}
           {renderComparison('totalStars', 'Total Stars')}
           {renderComparison('totalCommits', 'Total Commits')}
-          {renderComparison('pullRequests', 'Pull Requests')}
+          {renderComparison('totalPullRequests', 'Pull Requests')}
+          {renderComparison('totalIssues', 'Issues')}
           <TableRow>
             <TableCell className="font-medium">Account Age</TableCell>
             <TableCell>{formatDate(user1.createdAt)}</TableCell>

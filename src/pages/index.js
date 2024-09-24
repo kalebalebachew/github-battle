@@ -18,6 +18,7 @@ export default function Home() {
   const [comparison, setComparison] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isDarkMode, setIsDarkMode] = useState(false); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,7 +54,7 @@ export default function Home() {
             <GitHubLogoIcon className="w-6 h-6 sm:w-8 sm:h-8" />
             GitHub Battle
           </h1>
-          <ThemeToggle />
+          <ThemeToggle setIsDarkMode={setIsDarkMode} /> 
         </div>
         <Card>
           <CardHeader>
@@ -125,6 +126,11 @@ export default function Home() {
           )}
         </AnimatePresence>
       </div>
+      <footer className={`w-full text-center py-4 mt-auto ${isDarkMode ? 'bg-gray-800 text-white' : ' text-black'}`}>
+        <h1 className="text-lg">
+          ⭐ <a href="https://github.com/kalebalebachew/github-battle" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline">Star our GitHub Repository!</a>
+        </h1>
+      </footer>
     </div>
   );
 }
