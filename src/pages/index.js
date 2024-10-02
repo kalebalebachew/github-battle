@@ -128,7 +128,7 @@ export default function Home() {
       </div>
       <footer className={`w-full text-center py-4 mt-auto ${isDarkMode ? 'bg-gray-800 text-white' : ' text-black'}`}>
         <h1 className="text-lg">
-          ⭐ <a href="https://github.com/kalebalebachew/github-battle" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline">Star our GitHub Repository!</a>
+          ⭐ <a href="https://github.com/kalebalebachew/github-battle" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline">Star the github repo</a>
         </h1>
       </footer>
     </div>
