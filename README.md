@@ -1,7 +1,7 @@
 # GitHub-Battle
 ### this tool allows users to compare two GitHub profiles and determine who comes out on top based on various metrics
 
-- [Live Demo](https://github-battle-psi.vercel.app/)
+- [Live Demo](https://github-battle.kalebalebachew.com/)
 
 ## Features
 -  Compare GitHub profiles side by side
